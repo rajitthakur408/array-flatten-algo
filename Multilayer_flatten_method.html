@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let a = [
+        1,
+        2,
+        [3, 4, [3, 4, [3, 4], [3, 4]]],
+        5,
+        [6, 7, 8, [3, 4], 9],
+        6,
+        [3, 4, [3, 4, [3, 4, [3, 4]]]],
+    ];
+    let b = []
+    let c = a;
+    let tempI = 0
+
+    //if a[i] type is not array push that into b arry
+    //if its array then run loop for 2nd dimension and pust that into b array
+    // check the b if its having more array then b will be acting like a and we will follow the same process
+    function myfun() {                         ///////////////////////////
+        for (let i in a) {
+            if (typeof (a[i]) == 'number') {  //// uncover method /////////
+                b.push(a[i])
+            }                                   //////////////////////////////
+            else {
+                for (let j in a[i]) {
+                    b.push(a[i][j]);
+                }                             //////////////////////////////
+            }
+        }
+/////////////////first layer uncover //////////////////////////////////////
+///////////now checking again if there is arraypresent in b again if yes then 
+ //////////////////////////// we will call again uncover method///////////
+        for (let i in b) {
+            if (typeof (b[i]) != 'number') {
+                a = b;
+                b = [];
+                myfun()
+            }                  ///////layer checking method whether there is more or not/////
+            else {
+                continue
+            }
+        }
+        console.log(b);
+    }
+
+
+
+</script>
+
+</html>
